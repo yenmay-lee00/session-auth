@@ -12,12 +12,20 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
+// pass error variable to prevent error variable undefined ReferenceError
 app.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login', { error:null })
 })
 
 app.post('/login', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
+    // simulate having a DB
+    if (req.body.username === "beep" && req.body.password === "123") {
+        // create a session
+    } else {
+        // render the login.ejs view engine, pass error as value to that template
+        res.render('login', {error: "Wrong credentials"})
+    }
 })
 
 app.listen(3000, () => console.log('Server started on port 3000'))
