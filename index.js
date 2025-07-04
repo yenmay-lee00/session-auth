@@ -17,6 +17,12 @@ app.use(session({
     name: 'yenmay' // name the cookie
 }))
 
+// access ALL routes to send user details
+app.use((req, res, next) => {
+    res.locals.user = req.session.user
+    next()
+})
+
 app.get('/', checkLoggedIn, (req, res) => {
     res.render('home')
 })
