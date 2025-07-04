@@ -40,5 +40,11 @@ app.post('/login', (req, res) => {
     }
 })
 
+app.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.clearCookie('yenmay')
+    res.redirect('/')
+})
+
 app.listen(3000, () => console.log('Server started on port 3000'))
  
