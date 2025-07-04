@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const { checkLoggedIn, bypassLogin } = require('./middlewares')
 
 const app = express()
 
@@ -16,12 +17,12 @@ app.use(session({
     name: 'yenmay' // name the cookie
 }))
 
-app.get('/', (req, res) => {
+app.get('/', checkLoggedIn, (req, res) => {
     res.render('home')
 })
 
 // pass error variable to prevent error variable undefined ReferenceError
-app.get('/login', (req, res) => {
+app.get('/login', bypassLogin, (req, res) => {
     res.render('login', { error:null })
 })
 
