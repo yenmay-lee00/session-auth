@@ -14,7 +14,10 @@ app.use(session({
     secret: 'my_session_secret',
     resave: true,
     saveUninitialized: false,
-    name: 'yenmay' // name the cookie
+    name: 'yenmay', // name the cookie
+    cookie: {
+        maxAge: 10000 // 10s
+    }
 }))
 
 // access ALL routes to send user details
